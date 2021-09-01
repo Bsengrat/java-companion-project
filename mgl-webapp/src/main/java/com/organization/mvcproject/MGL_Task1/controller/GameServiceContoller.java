@@ -18,9 +18,9 @@ import com.organization.mvcproject.MGL_Task1.model.Game;
 import com.organization.mvcproject.MGL_Task1.model.Review;
 import com.organization.mvcproject.MGL_Task1.service.Game_Service;
 
-//TODO 1.0  follow java class naming, improve class name
+//TODO 1.0  follow java class naming, improve class name Check...
 @Controller
-public class MGL_Task1_Controller {
+public class GameServiceContoller {
 
 	//TODO 1.0 variable naming convention, improve reference name
 	@Autowired
