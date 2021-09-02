@@ -5,9 +5,9 @@
 
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-        <script src="resources/static/js/app.js" /></script>
-        <script src="resources/static/js/MGL_Task1.service.js"></script>
-        <script src="resources/static/js/MGL_Task1.controller.js"></script>
+        <script src="resources/static/js/mgl.module.js" /></script>
+        <script src="resources/static/js/game.service.js"></script>
+        <script src="resources/static/js/game.controller.js"></script>
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,10 +26,10 @@
     	<link rel="icon" type="image/png" sizes="16x16" href="resources/static/images/favicon-16x16.png">
     </head>
 
-    <body ng-app="MGL_Task1_app" class="ng-cloak">
+    <body ng-app="MGLAPP" class="ng-cloak">
         <mgl:myNav/>
         <br>
-        <div class="container" ng-controller="MGL_Task1_Controller as MGL_T1_ctrl">
+        <div class="container" ng-controller="GameController as MGL_T1_ctrl">
             <div class="panel panel-default">
                 <div class="panel-heading text-light"><span class="lead">Game Registration Form </span></div>
                 <div class="formcontainer">
