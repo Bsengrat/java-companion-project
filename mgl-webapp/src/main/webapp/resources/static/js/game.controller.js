@@ -4,9 +4,9 @@ angular.module('MGLAPP').controller('GameController',
 		[ 'GameService', function(GameService) {
 			var self = this;
 			self.game = {
-				game_id : '',
-				game_name : '',
-				game_genre : ''
+				id : '',
+				name : '',
+				genre : ''
 			};
 			self.games = [];
 
