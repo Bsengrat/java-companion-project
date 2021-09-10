@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.organization.mvcproject.model.Game;
-import com.organization.mvcproject.model.Review;
-import com.organization.mvcproject.service.GameRetrievalService;
+import com.organization.mvcproject.api.service.GameRetrievalService;
+import com.organization.mvcproject.model.GameImpl;
+import com.organization.mvcproject.model.ReviewImpl;
 
 @RestController
 @RequestMapping(value ="/game")
@@ -31,13 +31,13 @@ public class GameServiceController {
 	
 	//TODO 1.0 RequestMapping URL should follow RESTful.
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ResponseEntity<List<Game>> fetchAllGames() {
-		return new ResponseEntity<List<Game>>(gameService.retrieveAllGames(), HttpStatus.OK);
+	public ResponseEntity<List<GameImpl>> fetchAllGames() {
+		return new ResponseEntity<List<GameImpl>>(gameService.retrieveAllGames(), HttpStatus.OK);
 	}
 
 	//TODO 1.0 RequestMapping URL should follow RESTful convention
 	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> createGame(@RequestBody Game game) {
+	public ResponseEntity<Void> createGame(@RequestBody GameImpl game) {
 		gameService.saveGame(game);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}

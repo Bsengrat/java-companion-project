@@ -6,8 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.organization.mvcproject.dao.MockGameDao;
-import com.organization.mvcproject.model.Game;
+import com.organization.mvcproject.api.service.GameRetrievalService;
+import com.organization.mvcproject.dao.MockGameDaoImpl;
+import com.organization.mvcproject.model.GameImpl;
 
 @Service
 public class GameServiceImplementation implements GameRetrievalService {
@@ -20,15 +21,15 @@ public class GameServiceImplementation implements GameRetrievalService {
 	 */
 	
 	@Autowired
-	private MockGameDao mockgameDao;
+	private MockGameDaoImpl mockgameDao;
 	//put all the methods that modify the data into this file from the mockDao.
 	@Override
-	public List<Game> retrieveAllGames() {
+	public List<GameImpl> retrieveAllGames() {
 		return mockgameDao.getAllGames();
 	}
 
 	@Override
-	public Game saveGame(Game game) {
+	public GameImpl saveGame(GameImpl game) {
 		return mockgameDao.saveGame(game);
 	}
 	

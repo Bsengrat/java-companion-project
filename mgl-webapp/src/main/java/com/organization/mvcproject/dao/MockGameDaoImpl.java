@@ -5,32 +5,33 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.organization.mvcproject.model.Game;
-import com.organization.mvcproject.service.GameRetrievalService;
+import com.organization.mvcproject.api.DAO.MockGameDao;
+import com.organization.mvcproject.api.service.GameRetrievalService;
+import com.organization.mvcproject.model.GameImpl;
 
 @Repository
-public class MockGameDao {
+public class MockGameDaoImpl  implements MockGameDao {
 	private static Long gameId = new Long(0);
 	private static Long companyId = new Long(0);
-	private static List<Game> games = new ArrayList<Game>();
+	private static List<GameImpl> games = new ArrayList<GameImpl>();
 
 	static {
 		games = populateGames();
 	}
 	
-	private static List<Game> populateGames() {
+	private static List<GameImpl> populateGames() {
 
-		Game game1 = new Game();
+		GameImpl game1 = new GameImpl();
 		game1.setId(++gameId);
 		game1.setGenre("Sport");
 		game1.setName("Rocket League");
 
-		Game game2 = new Game();
+		GameImpl game2 = new GameImpl();
 		game2.setId(++gameId);
 		game2.setGenre("Shooter");
 		game2.setName("Halo 3");
 
-		Game game3 = new Game();
+		GameImpl game3 = new GameImpl();
 		game3.setId(++gameId);
 		game3.setGenre("MMORPG");
 		game3.setName("Runescape");
@@ -42,8 +43,9 @@ public class MockGameDao {
 		return games;
 	}
 	
+	@Override
 	public boolean deleteGame(Long deleteGameId) {
-		for(Game gameItem : games) {
+		for(GameImpl gameItem : games) {
 			if(deleteGameId == gameItem.getId()) {
 				return games.remove(gameItem);
 			}
@@ -51,19 +53,19 @@ public class MockGameDao {
 		return false;
 	}
 
-
-	public List<Game> getAllGames() {
+	@Override
+	public List<GameImpl> getAllGames() {
 		return games;
 	}
 
-
-	public Game saveGame(Game game) {
+	@Override
+	public GameImpl saveGame(GameImpl game) {
 		if(game.getId() != null) {
 		long nGameId = game.getId();
 		
-		for(Game gameItem : games) {
+		for(GameImpl gameItem : games) {
 			if(nGameId == gameItem.getId()) {
-				Game updatedGame = gameItem;
+				GameImpl updatedGame = gameItem;
 				updatedGame.setName(game.getName());
 				updatedGame.setGenre(game.getGenre());
 				return updatedGame;
