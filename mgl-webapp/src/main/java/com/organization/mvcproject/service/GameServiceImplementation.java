@@ -33,8 +33,8 @@ public class GameServiceImplementation implements GameRetrievalService {
 		return mockgameDao.saveGame(game);
 	}
 	
-
-	public Boolean deleteGame(long id){
+	@Override
+	public boolean deleteGame(long id){
 		return mockgameDao.deleteGame(id);
 	}
 }

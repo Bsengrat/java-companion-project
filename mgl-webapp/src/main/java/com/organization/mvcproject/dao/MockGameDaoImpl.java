@@ -42,11 +42,11 @@ public class MockGameDaoImpl  implements MockGameDao {
 
 		return games;
 	}
-	
+
 	@Override
-	public boolean deleteGame(Long deleteGameId) {
+	public boolean deleteGame(long id) {
 		for(GameImpl gameItem : games) {
-			if(deleteGameId == gameItem.getId()) {
+			if(id == gameItem.getId()) {
 				return games.remove(gameItem);
 			}
 		}

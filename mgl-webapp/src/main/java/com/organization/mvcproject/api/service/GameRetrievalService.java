@@ -11,4 +11,7 @@ public interface GameRetrievalService {
 
 	GameImpl saveGame(GameImpl game);
 
+	boolean deleteGame(long id);
+
+
 }

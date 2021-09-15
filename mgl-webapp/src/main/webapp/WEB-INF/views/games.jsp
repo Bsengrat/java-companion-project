@@ -37,7 +37,7 @@
                         <input type="hidden" ng-model="MGL_T1_ctrl.game.id" />
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label class="col-md-2 control-lable text-light" for="game_name">Name*</label>
+                                <label class="col-md-2 control-lable text-light" for="game_name">Name</label>
                                 <div class="col-md-7">
                                     <input type="text" ng-model="MGL_T1_ctrl.game.name" id="game_name" class="game_name form-control input-sm" placeholder="Enter the name of the new game [required]" required ng-minlength="3" />
                                     <div class="has-error" ng-show="gameForm.$dirty">
@@ -83,6 +83,7 @@
                             <tr ng-repeat="currentGame in MGL_T1_ctrl.games">
                                 <td><span ng-bind="currentGame.name"></span></td>
                                 <td><span ng-bind="currentGame.genre"></span></td>
+                                <td><button data-ng-click="MGL_T1_ctrl.deleteGame(currentGame)" class="btn btn-secondary btn-sm">Update</button></td>
                                 <td>
                                 </td>
                             </tr>
@@ -90,6 +91,17 @@
                     </table>
                 </div>
             </div>
+                <div>
+                	<form ng-submit="MGL_T1_ctrl.deleteGame(gameDeleteForm)" name="gameDeleteForm">
+                		<label class="panel-heading text-light" for="gameDeleteForm">Delete Game:</label>
+                		<select ng-model="gameDeleteForm">
+                		<option ng-repeat="currentGame in MGL_T1_ctrl.games" ng-value="{{currentGame}}">
+                		{{currentGame.name}}
+                		</option>
+                	</select>
+                	<input type="submit" value="Submit" class="btn btn-primary btn-sm">
+                	</form>
+                </div>
         </div>
 
     </body>
