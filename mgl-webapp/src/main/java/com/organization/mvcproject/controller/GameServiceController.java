@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,10 +33,16 @@ public class GameServiceController {
 		return new ResponseEntity<List<GameImpl>>(gameService.retrieveAllGames(), HttpStatus.OK);
 	}
 
+	//Return a game instead of a void to check data.
 	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> createGame(@RequestBody GameImpl game) {
-		gameService.saveGame(game);
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	public ResponseEntity<?> createGame(@RequestBody GameImpl game) {
+			if(!gameService.validateGame(game)) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			
+			gameService.saveGame(game);
+			return new ResponseEntity<>(HttpStatus.CREATED);			
+
 	}
 	//made 9/14/2021
 	@DeleteMapping(value = "/{id}")
@@ -43,4 +50,15 @@ public class GameServiceController {
 		gameService.deleteGame(Long.valueOf(id));
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@PutMapping(value = "/")
+	public ResponseEntity<?> updateGame(@RequestBody GameImpl game){
+		if(!gameService.validateGame(game)) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		gameService.saveGame(game);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
 }

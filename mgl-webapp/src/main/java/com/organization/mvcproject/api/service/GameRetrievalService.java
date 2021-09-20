@@ -13,5 +13,7 @@ public interface GameRetrievalService {
 
 	boolean deleteGame(long id);
 
+	boolean validateGame(GameImpl game);
+
 
 }

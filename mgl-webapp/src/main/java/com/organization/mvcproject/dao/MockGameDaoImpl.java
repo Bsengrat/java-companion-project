@@ -44,7 +44,7 @@ public class MockGameDaoImpl  implements MockGameDao {
 	}
 
 	@Override
-	public boolean deleteGame(long id) {
+	public Boolean deleteGame(long id) {
 		for(GameImpl gameItem : games) {
 			if(id == gameItem.getId()) {
 				return games.remove(gameItem);
@@ -65,10 +65,9 @@ public class MockGameDaoImpl  implements MockGameDao {
 		
 		for(GameImpl gameItem : games) {
 			if(nGameId == gameItem.getId()) {
-				GameImpl updatedGame = gameItem;
-				updatedGame.setName(game.getName());
-				updatedGame.setGenre(game.getGenre());
-				return updatedGame;
+				gameItem.setName(game.getName());
+				gameItem.setGenre(game.getGenre());
+				return gameItem;
 				}
 			}
 		}
@@ -77,4 +76,22 @@ public class MockGameDaoImpl  implements MockGameDao {
 		games.add(game);
 		return game;
 	}
+	
+	@Override
+	public Boolean validateGame(GameImpl game) {
+		boolean isValid = true;
+		final int MININPUTLEN = 3;
+		
+		if(!game.getGenre().equals("") || !game.getName().equals("") ) {
+			int gameNameLength = game.getName().length();
+			final int gameGenreLength = game.getGenre().length();
+				
+			if(gameNameLength < MININPUTLEN || gameGenreLength < MININPUTLEN) {
+				isValid = false;
+			}
+		}
+		return isValid;
+	}
+	
+	
 }

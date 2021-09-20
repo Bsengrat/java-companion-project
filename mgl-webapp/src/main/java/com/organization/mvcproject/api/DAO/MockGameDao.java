@@ -7,6 +7,7 @@ import com.organization.mvcproject.model.GameImpl;
 public interface MockGameDao {
 	List<GameImpl> getAllGames();
 	GameImpl saveGame(GameImpl game);
-	boolean deleteGame(long id);
-	
+	Boolean deleteGame(long id);
+	GameImpl findGameById(long id);
+	Boolean validateGame(GameImpl game);
 }
