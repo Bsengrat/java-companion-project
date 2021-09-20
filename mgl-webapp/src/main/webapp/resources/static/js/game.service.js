@@ -7,7 +7,8 @@ angular.module('MGLAPP').factory('GameService', ['$http', function($http) {
 		var factory = {
 			fetchAllGames : fetchAllGames,
 			createGame : createGame,
-			deleteGame : deleteGame
+			deleteGame : deleteGame,
+			updateGame : updateGame,
 		};
 
 		return factory;
@@ -28,6 +29,13 @@ angular.module('MGLAPP').factory('GameService', ['$http', function($http) {
 			
 		function deleteGame(id) {
 			return $http.delete(REST_SERVICE_URI + id).then(function(response) {
+					return response.data;
+				}
+			);
+		}
+		
+		function updateGame(game) {
+			return $http.put(REST_SERVICE_URI, game).then(function(response) {
 					return response.data;
 				}
 			);

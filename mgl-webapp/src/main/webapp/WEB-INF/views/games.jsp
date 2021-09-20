@@ -39,7 +39,7 @@
                             <div class="form-group col-md-12">
                                 <label class="col-md-2 control-lable text-light" for="game_name">Name</label>
                                 <div class="col-md-7">
-                                    <input type="text" ng-model="MGL_T1_ctrl.game.name" id="game_name" class="game_name form-control input-sm" placeholder="Enter the name of the new game [required]" required ng-minlength="3" />
+                                    <input type="text" ng-model="MGL_T1_ctrl.game.name" id="game_name" class="game_name form-control input-sm" placeholder="Enter the name of the new game [required]" required />
                                     <div class="has-error" ng-show="gameForm.$dirty">
                                         <span ng-show="gameForm.game_name.$error.required">This is a required field</span>
                                         <span ng-show="gameForm.game_name.$error.minlength">Minimum length required is 3</span>
@@ -54,7 +54,7 @@
                             <div class="form-group col-md-12">
                                 <label class="col-md-2 control-lable text-light" for="game_genre">Game Genre</label>
                                 <div class="col-md-7">
-                                    <input type="text" ng-model="MGL_T1_ctrl.game.genre" id="game_genre" class="form-control input-sm" placeholder="Enter the genre of the new game" />
+                                    <input type="text" ng-model="MGL_T1_ctrl.game.genre" id="game_genre" class="form-control input-sm" placeholder="Enter the genre of the new game [required]" required/>
                                 </div>
                             </div>
                         </div>
@@ -76,14 +76,23 @@
                             <tr>
                                 <th>Game Name</th>
                                 <th>Game Genre</th>
+                                <th>Edit</th>
                                 <th width="20%"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="currentGame in MGL_T1_ctrl.games">
-                                <td><span ng-bind="currentGame.name"></span></td>
-                                <td><span ng-bind="currentGame.genre"></span></td>
-                                <td><button data-ng-click="MGL_T1_ctrl.deleteGame(currentGame)" class="btn btn-secondary btn-sm">Update</button></td>
+                            <tr ng-repeat="currentGame in MGL_T1_ctrl.games" ng-model = "MGL_T1_ctrl.games">
+                                <td ng-if="!currentGame.selected"><span ng-bind="currentGame.name"></span></td>
+                                <td ng-if= "!currentGame.selected"><span ng-bind="currentGame.genre"></span></td>
+              
+                                <td ng-if="currentGame.selected">
+                                    <input type="text" ng-model="MGL_T1_ctrl.game.name" ng-value="currentGame.name" class="form-control input-sm" placeholder="Update Game name" />
+                                </td>
+                                <td ng-if="currentGame.selected">
+                                    <input type="text" ng-model="MGL_T1_ctrl.game.genre" ng-value="currentGame.genre" class="form-control input-sm" placeholder="Update Game Genre" />                                
+                                </td>                    
+                                <td><span><input type = "checkbox" ng-click="currentGame.selected = (currentGame.selected ? false : true)" class="btn btn-secondary btn-sm" /></span></td>
+                                <td><button type="submit" data-ng-click="MGL_T1_ctrl.updateGame(currentGame)" class="btn btn-secondary btn-sm">Update</button></td>
                                 <td>
                                 </td>
                             </tr>

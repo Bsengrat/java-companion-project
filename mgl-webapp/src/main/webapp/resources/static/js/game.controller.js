@@ -11,6 +11,9 @@ angular.module('MGLAPP').controller('GameController',
 			self.games = [];
 
 			self.fetchAllGames = function(){
+				self.game.id = '';
+				self.game.name = '';
+				self.game.genre = '';
 				GameService.fetchAllGames().then(function(data) {
 					self.games = data;
 				});
@@ -24,6 +27,13 @@ angular.module('MGLAPP').controller('GameController',
 			
 			self.deleteGame = function(game){
 				return GameService.deleteGame(game.id).then(function (){
+					self.fetchAllGames();
+				})
+			}
+			
+			self.updateGame = function(game){	
+				self.game.id = String(game.id)
+				return GameService.updateGame(self.game).then(function (){									
 					self.fetchAllGames();
 				})
 			}
